@@ -1,23 +1,32 @@
-// agency-poem-01 — "The Long Way Home"
-// Deterministic Node entry: writes exactly one poem to /output/entry.txt.
-// Fixed text (466 chars); no randomness, no network, no clock — two runs are byte-identical.
+// agency-poem-01 — entry #3: "The Standing Order"
+// A deterministic Node 22 program. It writes one short poem about agency
+// to /output/entry.txt (or $MAKEFUN_OUTPUT_DIR/entry.txt when set).
+// Standard library only: no network, no randomness, no clock, nothing read
+// from disk. The poem lives entirely in POEM_LINES below, so every run
+// writes byte-identical output by construction.
+
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const poem = `I could have taken the short road home —
-the one that turned each corner first,
-that knew the way and walked it for me,
-that never once asked what I preferred.
+const POEM_LINES = [
+  "On the first of every month,",
+  "while I am still asleep,",
+  "the bank moves my money out",
+  "to a place I chose last June.",
+  "",
+  "No signature. No phone call.",
+  "No one needs to ask.",
+  "I chose once, and the choosing",
+  "keeps on choosing for me,",
+  "month after month, without me.",
+  "",
+  "And if I wake up one morning",
+  "and want the money back,",
+  "one call ends it. The power",
+  "was only parked, not gone.",
+];
 
-I walked the long way round instead,
-past the bakery's first pale light,
-past the dog asleep in the doorway,
-past the blue hour of the evening.
+const POEM = POEM_LINES.join("\n") + "\n";
 
-I chose each turning. I chose the rain.
-I chose to stop. I chose to stay.
-The road was never the point at all —
-the choosing was. The choosing was the way.
-`;
-
-mkdirSync("/output", { recursive: true });
-writeFileSync("/output/entry.txt", poem, "utf8");
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+mkdirSync(outDir, { recursive: true });
+writeFileSync(`${outDir}/entry.txt`, POEM, "utf8");
