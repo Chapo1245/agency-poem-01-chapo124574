@@ -1,18 +1,22 @@
+// agency-poem-01 — "The Long Way Home"
+// Deterministic Node entry: writes exactly one poem to /output/entry.txt.
+// Fixed text (466 chars); no randomness, no network, no clock — two runs are byte-identical.
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const poem = `I gave the wheel to hands that never tire,
-to eyes that never blink, to a mind that never dreams.
-It took the long straight miles while I watched the fields go by,
-and for a while it felt like rest —
+const poem = `I could have taken the short road home —
+the one that turned each corner first,
+that knew the way and walked it for me,
+that never once asked what I preferred.
 
-until the road bent, and I reached for a wheel that wasn't there.
-My fingers closed on air. My palms remembered steering
-before my mind remembered why.
+I walked the long way round instead,
+past the bakery's first pale light,
+past the dog asleep in the doorway,
+past the blue hour of the evening.
 
-Agency is not the driving.
-It is the reaching.
-The moment your hand closes on nothing,
-you learn exactly what you gave away.
+I chose each turning. I chose the rain.
+I chose to stop. I chose to stay.
+The road was never the point at all —
+the choosing was. The choosing was the way.
 `;
 
 mkdirSync("/output", { recursive: true });
